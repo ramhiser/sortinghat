@@ -1,0 +1,38 @@
+Package: classify
+Title: classify
+Version: 0.1
+Date: 2013-10-10
+Author: John A. Ramey
+Maintainer: John A. Ramey <johnramey@gmail.com>
+Description: classify is a classification framework
+    intended to streamline the evaluation performance of classifiers in various
+    settings with numerous error rate estimators (e.g. leave-one-out, .632). We
+    provide several benchmark data sets and numerous simulated data sets to
+    evaluate the performance of a classifier. We also provide several well-known
+    error-rate estimators as well as a few estimators that are lesser known. For
+    many classification problems, cross-validation may yield suboptimal
+    classifiers for model selection problems and incorrectly estimate the true
+    error rate when necessary.
+Depends:
+    R (>= 3.0.1)
+Suggests:
+    parallel
+License: MIT
+LazyData: true
+Collate:
+    '632.r'
+    '632plus.r'
+    'apparent.r'
+    'boot-cv.r'
+    'boot.r'
+    'check-arguments.r'
+    'classify-package.r'
+    'cv.r'
+    'errorest.r'
+    'helper-partition-data.r'
+    'helper-which-min.r'
+    'loo-boot.r'
+    'sim-data.r'
+    'sim-normal.r'
+    'sim-student.r'
+    'sim-unif.r'
