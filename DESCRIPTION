@@ -36,3 +36,8 @@ Collate:
     'sim-normal.r'
     'sim-student.r'
     'sim-unif.r'
+    'helper-autocorr.r'
+    'sim-duin.r'
+    'sim-friedman.r'
+    'sim-guo.r'
+    'sim-intraclass.r'
