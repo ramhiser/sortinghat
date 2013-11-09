@@ -1,8 +1,8 @@
-\name{sim_unif}
-\alias{sim_unif}
+\name{simdata_uniform}
+\alias{simdata_uniform}
 \title{Generates random variates from multivariate uniform populations.}
 \usage{
-  sim_unif(n = rep(25, 5), delta = 0, seed = NULL)
+  simdata_uniform(n = rep(25, 5), delta = 0, seed = NULL)
 }
 \arguments{
   \item{n}{a vector (of length \eqn{K_0}) of the sample
@@ -59,11 +59,11 @@
   exclusive and entirely separated.
 }
 \examples{
-data_generated <- sim_unif(seed = 42)
+data_generated <- simdata_uniform(seed = 42)
 dim(data_generated$x)
 table(data_generated$y)
 
-data_generated2 <- sim_unif(n = 10 * seq_len(5), delta = 1.5)
+data_generated2 <- simdata_uniform(n = 10 * seq_len(5), delta = 1.5)
 table(data_generated2$y)
 sample_means <- with(data_generated2,
                      tapply(seq_along(y), y, function(i) {

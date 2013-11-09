@@ -1,8 +1,8 @@
-\name{generate_friedman}
-\alias{generate_friedman}
+\name{simdata_friedman}
+\alias{simdata_friedman}
 \title{Function to generate data in the format described in Friedman (1989)}
 \usage{
-  generate_friedman(n1 = 10, n2 = 10, n3 = 10, p = 2,
+  simdata_friedman(n1 = 10, n2 = 10, n3 = 10, p = 2,
     experiment = 1, seed = NULL)
 }
 \arguments{
@@ -20,11 +20,19 @@
   \item{seed}{the random number seed of the data.}
 }
 \value{
-  list x and y
+  named list containing: \describe{ \item{x:}{A matrix
+  whose rows are the observations generated and whose
+  columns are the \code{p} features (variables)}
+  \item{y:}{A vector denoting the population from which the
+  observation in each row was generated.} }
 }
 \description{
   Function to generate data in the format described in
   Friedman (1989)
+}
+\examples{
+data_generated <- simdata_friedman(seed = 42)
+dim(data_generated$x)
 }
 \references{
   Friedman, J. H. (1989), "Regularized Discriminant

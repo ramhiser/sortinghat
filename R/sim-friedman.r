@@ -1,17 +1,26 @@
 #' Function to generate data in the format described in Friedman (1989)
 #'
-#' @export
+#' @references Friedman, J. H. (1989), "Regularized Discriminant Analysis,"
+#' Journal of American Statistical Association, 84, 405, 165-175.
 #' @param n1 sample size of group 1
 #' @param n2 sample size of group 2
 #' @param n3 sample size of group 3
 #' @param p dimension of the generated data
 #' @param experiment the experiment number from the RDA paper
 #' @param seed the random number seed of the data.
-#' @references Friedman, J. H. (1989), "Regularized Discriminant Analysis,"
-#' Journal of American Statistical Association, 84, 405, 165-175.
-#' @return list x and y
-generate_friedman <- function(n1 = 10, n2 = 10, n3 = 10, p = 2, experiment = 1,
-                              seed = NULL) {
+#' @return named list containing:
+#' \describe{
+#'   \item{x:}{A matrix whose rows are the observations generated and whose
+#'   columns are the \code{p} features (variables)}
+#'   \item{y:}{A vector denoting the population from which the observation in
+#'   each row was generated.}
+#' }
+#' @export
+#' @examples
+#' data_generated <- simdata_friedman(seed = 42)
+#' dim(data_generated$x)
+simdata_friedman <- function(n1 = 10, n2 = 10, n3 = 10, p = 2, experiment = 1,
+                             seed = NULL) {
   if(!is.null(seed)) set.seed(seed)
   # The number of groups is 3 in Friedman (1989).
   num_groups <- 3

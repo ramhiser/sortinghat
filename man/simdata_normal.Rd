@@ -1,9 +1,9 @@
-\name{sim_normal}
-\alias{sim_normal}
+\name{simdata_normal}
+\alias{simdata_normal}
 \title{Generates random variates from multivariate normal populations with intraclass
 covariance matrices.}
 \usage{
-  sim_normal(n = rep(25, 5), p = 50, rho = rep(0.9, 5),
+  simdata_normal(n = rep(25, 5), p = 50, rho = rep(0.9, 5),
     delta = 0, sigma2 = 1, seed = NULL)
 }
 \arguments{
@@ -68,11 +68,11 @@ covariance matrices.}
   \ldots, K_0}, the \eqn{K_0} populations are equal.
 }
 \examples{
-data_generated <- sim_normal(n = 10 * seq_len(5), seed = 42)
+data_generated <- simdata_normal(n = 10 * seq_len(5), seed = 42)
 dim(data_generated$x)
 table(data_generated$y)
 
-data_generated2 <- sim_normal(p = 10, delta = 2, rho = rep(0.1, 5))
+data_generated2 <- simdata_normal(p = 10, delta = 2, rho = rep(0.1, 5))
 table(data_generated2$y)
 sample_means <- with(data_generated2,
                      tapply(seq_along(y), y, function(i) {

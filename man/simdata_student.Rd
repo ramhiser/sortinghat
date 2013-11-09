@@ -1,8 +1,8 @@
-\name{sim_student}
-\alias{sim_student}
+\name{simdata_student}
+\alias{simdata_student}
 \title{Generates random variates from multivariate Student's t populations.}
 \usage{
-  sim_student(n = rep(25, 5), p = 50, df = rep(6, 5),
+  simdata_student(n = rep(25, 5), p = 50, df = rep(6, 5),
     delta = 0, Sigma = diag(p), seed = NULL)
 }
 \arguments{
@@ -73,11 +73,11 @@
   \ldots, K_0}, the \eqn{K_0} populations are equal.
 }
 \examples{
-data_generated <- sim_student(n = 10 * seq_len(5), seed = 42)
+data_generated <- simdata_student(n = 10 * seq_len(5), seed = 42)
 dim(data_generated$x)
 table(data_generated$y)
 
-data_generated2 <- sim_student(p = 10, delta = 2, df = rep(2, 5))
+data_generated2 <- simdata_student(p = 10, delta = 2, df = rep(2, 5))
 table(data_generated2$y)
 sample_means <- with(data_generated2,
                      tapply(seq_along(y), y, function(i) {

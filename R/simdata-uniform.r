@@ -41,18 +41,18 @@
 #' }
 #' @export
 #' @examples
-#' data_generated <- sim_unif(seed = 42)
+#' data_generated <- simdata_uniform(seed = 42)
 #' dim(data_generated$x)
 #' table(data_generated$y)
 #'
-#' data_generated2 <- sim_unif(n = 10 * seq_len(5), delta = 1.5)
+#' data_generated2 <- simdata_uniform(n = 10 * seq_len(5), delta = 1.5)
 #' table(data_generated2$y)
 #' sample_means <- with(data_generated2,
 #'                      tapply(seq_along(y), y, function(i) {
 #'                             colMeans(x[i,])
 #'                      }))
 #' (sample_means <- do.call(rbind, sample_means))
-sim_unif <- function(n = rep(25, 5), delta = 0, seed = NULL) {
+simdata_uniform <- function(n = rep(25, 5), delta = 0, seed = NULL) {
   if (delta < 0) {
     stop("The value for 'delta' must be a nonnegative constant.")
   }
@@ -67,7 +67,7 @@ sim_unif <- function(n = rep(25, 5), delta = 0, seed = NULL) {
   # distribution with the configuration given in the description above. The
   # 'unif_params' argument is a matrix having 2 rows, such that the jth column
   # contains a_j and b_j as described above.
-  multivariate_unif <- function(n, unif_params) {
+  multivariate_uniform <- function(n, unif_params) {
     apply(unif_params, 2, function(params) {
       runif(n = n, min = params[1], max = params[2])
     })
@@ -76,7 +76,7 @@ sim_unif <- function(n = rep(25, 5), delta = 0, seed = NULL) {
   x <- lapply(seq_len(K_0), function(k) {
     bounds <- replicate(n = p, c(-1/2, 1/2))
     bounds[, k] <- bounds[, k] + delta
-    multivariate_unif(n[k], bounds)
+    multivariate_uniform(n[k], bounds)
   })
   x <- do.call(rbind, x)
   y <- do.call(c, sapply(seq_len(K_0), function(k) {

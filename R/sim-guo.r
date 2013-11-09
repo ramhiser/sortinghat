@@ -1,13 +1,26 @@
 #' Returns a data frame of two multivariate normal data sets with their population labels.
 #' The data sets share a common covariance matrix defined in Guo (2007).
 #'
-#' @export
+#' TODO: Import mvtnorm:::rmvnorm
+#' 
 #' @param n sample size of each population
 #' @param p dimension of the generated data
 #' @param rho autocorrelation of each block matrix; must be in [-1, 1].
 #' @param block_size size of each block in the covariance matrix.
 #' @param seed the random number seed of the data.
-generate_guo <- function(n = 100, p = 100, rho = 0.9, block_size = 100, seed = NULL) {
+#' @return named list containing:
+#' \describe{
+#'   \item{x:}{A matrix whose rows are the observations generated and whose
+#'   columns are the \code{p} features (variables)}
+#'   \item{y:}{A vector denoting the population from which the observation in
+#'   each row was generated.}
+#' }
+#' @export
+#' @examples
+#' data_generated <- simdata_guo(seed = 42)
+#' dim(data_generated$x)
+simdata_guo <- function(n = 100, p = 100, rho = 0.9, block_size = 100,
+                        seed = NULL) {
   stopifnot(p %% block_size == 0)
   if(!is.null(seed)) set.seed(seed)
 	

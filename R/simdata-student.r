@@ -46,19 +46,19 @@
 #' }
 #' @export
 #' @examples
-#' data_generated <- sim_student(n = 10 * seq_len(5), seed = 42)
+#' data_generated <- simdata_student(n = 10 * seq_len(5), seed = 42)
 #' dim(data_generated$x)
 #' table(data_generated$y)
 #'
-#' data_generated2 <- sim_student(p = 10, delta = 2, df = rep(2, 5))
+#' data_generated2 <- simdata_student(p = 10, delta = 2, df = rep(2, 5))
 #' table(data_generated2$y)
 #' sample_means <- with(data_generated2,
 #'                      tapply(seq_along(y), y, function(i) {
 #'                             colMeans(x[i,])
 #'                      }))
 #' (sample_means <- do.call(rbind, sample_means))
-sim_student <- function(n = rep(25, 5), p = 50, df = rep(6, 5), delta = 0,
-                        Sigma = diag(p), seed = NULL) {
+simdata_student <- function(n = rep(25, 5), p = 50, df = rep(6, 5), delta = 0,
+                            Sigma = diag(p), seed = NULL) {
   # The number of populations
   K_0 <- length(n)
 
