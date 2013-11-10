@@ -38,7 +38,7 @@ Collate:
     'sim-guo.r'
     'sim-intraclass.r'
     'simdata-normal.r'
-    'simdata-student.r'
     'simdata-uniform.r'
     'covariance-matrices.r'
     'helpers.r'
+    'simdata-t.r'

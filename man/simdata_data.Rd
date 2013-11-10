@@ -2,8 +2,7 @@
 \alias{simdata_data}
 \title{Wrapper function to generate data from a variety of data-generating models.}
 \usage{
-  simdata_data(family = c("uniform", "normal", "student"),
-    ...)
+  simdata_data(family = c("uniform", "normal", "t"), ...)
 }
 \arguments{
   \item{family}{the family of distributions from which to
@@ -26,9 +25,8 @@
   distributions}
   \item{\code{\link{simdata_normal}}}{Multivariate normal
   distributions with intraclass covariance matrices}
-  \item{\code{\link{simdata_student}}}{Multivariate
-  Student's t distributions each with a common covariance
-  matrix} }
+  \item{\code{\link{simdata_t}}}{Multivariate Student's t
+  distributions each with a common covariance matrix} }
 }
 \details{
   For each data-generating model, we generate \eqn{n_k}

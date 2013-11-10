@@ -5,8 +5,8 @@
 #'   \item{\code{\link{simdata_unif}}}{Multivariate uniform distributions}
 #'   \item{\code{\link{simdata_normal}}}{Multivariate normal distributions with
 #' intraclass covariance matrices}
-#'   \item{\code{\link{simdata_student}}}{Multivariate Student's t distributions
-#' each with a common covariance matrix}
+#'   \item{\code{\link{simdata_t}}}{Multivariate Student's t distributions each
+#' with a common covariance matrix}
 #' }
 #'
 #' For each data-generating model, we generate \eqn{n_k} observations \eqn{(k =
@@ -34,11 +34,11 @@
 #' uniform_data <- simdata_data(family = "uniform")
 #' normal_data <- simdata_data(family = "normal", delta = 2)
 #' student_data <- simdata_data(family = "student", delta = 1, df = 1:5)
-simdata_data <- function(family = c("uniform", "normal", "student"), ...) {
+simdata_data <- function(family = c("uniform", "normal", "t"), ...) {
   family <- match.arg(family)
   switch(family,
     uniform = simdata_unif(...),
     normal = simdata_normal(...),
-    student = simdata_student(...)
+    student = simdata_t(...)
   )
 }
