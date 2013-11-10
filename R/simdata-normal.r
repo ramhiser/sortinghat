@@ -13,8 +13,9 @@
 #' this common covariance matrix. The same logic applies to population means.
 #'
 #' @param n a vector (of length K) of the sample sizes for each population
-#' @param mean a vector or a list (of length K) of vectors
-#' @param cov a symmetric matrix or a list (of length K) of symmetric matrices.
+#' @param mean a vector or a list (of length K) of mean vectors
+#' @param cov a symmetric matrix or a list (of length K) of symmetric covariance
+#' matrices.
 #' @param seed seed for random number generation (If \code{NULL}, does not set
 #' seed)
 #' @return named list containing:
@@ -38,11 +39,11 @@
 #' table(data_generated$y)
 #'
 #' # Generates 10 observations from each of three multivariate normal
-#' # populations with equal covariance matrices.
+#' # populations with unequal covariance matrices.
 #' set.seed(42)
 #' mean_list <- list(c = c(-3, -3), c(0, 0), c(3, 3))
 #' cov_list <- list(cov_identity, 2 * cov_identity, 3 * cov_identity)
-#' data_generated2 <- simdata_normal(n = c(10, 10), mean = mean_list,
+#' data_generated2 <- simdata_normal(n = c(10, 10, 10), mean = mean_list,
 #'                                   cov = cov_list)
 #' dim(data_generated2$x)
 #' table(data_generated2$y)
@@ -66,9 +67,13 @@ simdata_normal <- function(n, mean, cov, seed = NULL) {
   # If only one mean or covariance matrix are given, replicate K times
   if (length(mean) == 1) {
     mean <- replicate(K, mean)
+  } else if (length(mean) != K) {
+    stop("The number of 'mean' vectors must equal K.")
   }
   if (length(cov) == 1) {
     cov <- replicate(K, cov)
+  } else if (length(cov) != K) {
+    stop("The number of 'cov' vectors must equal K.")
   }
 
   # Ensure the list of means are vectors having equal length
@@ -94,6 +99,7 @@ simdata_normal <- function(n, mean, cov, seed = NULL) {
   })
   x <- do.call(rbind, x)
   
+  # Generates class labels for each observation in 'x'
   y <- factor(rep(seq_along(n), n))
   
   list(x = x, y = y)
