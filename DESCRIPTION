@@ -33,7 +33,6 @@ Collate:
     'helper-which-min.r'
     'loo-boot.r'
     'sim-data.r'
-    'helper-autocorr.r'
     'sim-duin.r'
     'sim-friedman.r'
     'sim-guo.r'

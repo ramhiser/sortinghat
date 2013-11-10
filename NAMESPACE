@@ -1,4 +1,4 @@
-export(autocorr_mat)
+export(cov_autocorr)
 export(cv_partition)
 export(error_632)
 export(error_632plus)

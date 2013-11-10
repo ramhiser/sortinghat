@@ -1,4 +1,4 @@
-#' Constructs an intraclass covariance matrix.
+#' Constructs a p-dimensional intraclass covariance matrix.
 #'
 #' We define a \eqn{p \times p} intraclass covariance (correlation)
 #' matrix to be \eqn{\Sigma = \sigma^2 (1 - \rho) J_p + \rho I_p},
@@ -20,3 +20,15 @@ cov_intraclass <- function(p, rho, sigma2 = 1) {
   sigma2 * ((1 - rho) * matrix(1, nrow = p, ncol = p) + rho * diag(p))
 }
 
+#' Constructs a p-dimensional covariance matrix with an autocorrelation
+#' (autoregressive) structure.
+#'
+#' The value of rho determines the amount of autocorrelation.
+#'
+#' @export
+#' @param p the dimension of the matrix
+#' @param rho the autocorrelation value
+cov_autocorr <- function(p = 100, rho = 0.9) {
+  mat <- diag(p)
+  rho^abs(row(mat) - col(mat))
+}

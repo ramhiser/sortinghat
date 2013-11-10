@@ -1,6 +1,6 @@
 \name{cov_intraclass}
 \alias{cov_intraclass}
-\title{Constructs an intraclass covariance matrix.}
+\title{Constructs a p-dimensional intraclass covariance matrix.}
 \usage{
   cov_intraclass(p, rho, sigma2 = 1)
 }
