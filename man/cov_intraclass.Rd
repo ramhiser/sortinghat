@@ -1,8 +1,8 @@
-\name{intraclass_cov}
-\alias{intraclass_cov}
+\name{cov_intraclass}
+\alias{cov_intraclass}
 \title{Constructs an intraclass covariance matrix.}
 \usage{
-  intraclass_cov(p, rho, sigma2 = 1)
+  cov_intraclass(p, rho, sigma2 = 1)
 }
 \arguments{
   \item{p}{the dimension of the matrix}

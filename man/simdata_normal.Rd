@@ -1,26 +1,17 @@
 \name{simdata_normal}
 \alias{simdata_normal}
-\title{Generates random variates from multivariate normal populations with intraclass
-covariance matrices.}
+\title{Generates random variates from K multivariate normal populations.}
 \usage{
-  simdata_normal(n = rep(25, 5), p = 50, rho = rep(0.9, 5),
-    delta = 0, sigma2 = 1, seed = NULL)
+  simdata_normal(n, mean, cov, seed = NULL)
 }
 \arguments{
-  \item{n}{a vector (of length K_0) of the sample sizes for
+  \item{n}{a vector (of length K) of the sample sizes for
   each population}
 
-  \item{p}{the dimension of the multivariate normal
-  populations}
+  \item{mean}{a vector or a list (of length K) of vectors}
 
-  \item{rho}{a vector (of length K_0) of the intraclass
-  constants for each population}
-
-  \item{delta}{the fixed distance between each population
-  and the origin}
-
-  \item{sigma2}{the coefficient of each intraclass
-  covariance matrix}
+  \item{cov}{a symmetric matrix or a list (of length K) of
+  symmetric matrices.}
 
   \item{seed}{seed for random number generation (If
   \code{NULL}, does not set seed)}
@@ -34,50 +25,39 @@ covariance matrices.}
 }
 \description{
   We generate \eqn{n_k} observations \eqn{(k = 1, \ldots,
-  K_0)} from each of \eqn{K_0} multivariate normal
-  distributions such that the Euclidean distance between
-  each of the means and the origin is equal and scaled by
-  \eqn{\Delta \ge 0}.
-}
-\details{
-  Let \eqn{\Pi_k} denote the \eqn{k}th population with a
+  K)} from each of \eqn{K} multivariate normal
+  distributions. Let the \eqn{k}th population have a
   \eqn{p}-dimensional multivariate normal distribution,
   \eqn{N_p(\mu_k, \Sigma_k)} with mean vector \eqn{\mu_k}
-  and covariance matrix \eqn{\Sigma_k}. Also, let \eqn{e_k}
-  be the \eqn{k}th standard basis vector (i.e., the
-  \eqn{k}th element is 1 and the remaining values are 0).
-  Then, we define \deqn{\mu_k = \Delta \sum_{j=1}^{p/K_0}
-  e_{(p/K_0)(k-1) + j}.} Note that \eqn{p} must be
-  divisible by \eqn{K_0}. By default, the first 10
-  dimensions of \eqn{\mu_1} are set to \eqn{\Delta} with
-  all remaining dimensions set to 0, the second 10
-  dimensions of \eqn{\mu_2} are set to \eqn{\Delta} with
-  all remaining dimensions set to 0, and so on.
-
-  Also, we consider intraclass covariance (correlation)
-  matrices such that \eqn{\Sigma_k = \sigma^2 (1 - \rho_k)
-  J_p + \rho_k I_p}, where \eqn{-(p-1)^{-1} < \rho_k < 1},
-  \eqn{I_p} is the \eqn{p \times p} identity matrix, and
-  \eqn{J_p} denotes the \eqn{p \times p} matrix of ones.
-
-  By default, we let \eqn{K_0 = 5}, \eqn{\Delta = 0}, and
-  \eqn{\sigma^2 = 1}. Furthermore, we generate 25
-  observations from each population by default.
-
-  For \eqn{\Delta = 0} and \eqn{\rho_k = \rho}, \eqn{k = 1,
-  \ldots, K_0}, the \eqn{K_0} populations are equal.
+  and positive-definite covariance matrix \eqn{\Sigma_k}.
+}
+\details{
+  The number of populations, \code{K}, is determined from
+  the length of the vector of sample sizes, code{n}. The
+  mean vectors and covariance matrices each can be given in
+  a list of length \code{K}. If one covariance matrix is
+  given (as a matrix or a list having 1 element), then all
+  populations share this common covariance matrix. The same
+  logic applies to population means.
 }
 \examples{
-data_generated <- simdata_normal(n = 10 * seq_len(5), seed = 42)
+# Generates 10 observations from each of two multivariate normal populations
+# with equal covariance matrices.
+mean_list <- list(c = c(1, 0), c(0, 1))
+cov_identity <- diag(2)
+data_generated <- simdata_normal(n = c(10, 10), mean = mean_list,
+                                 cov = cov_identity, seed = 42)
 dim(data_generated$x)
 table(data_generated$y)
 
-data_generated2 <- simdata_normal(p = 10, delta = 2, rho = rep(0.1, 5))
+# Generates 10 observations from each of three multivariate normal
+# populations with equal covariance matrices.
+set.seed(42)
+mean_list <- list(c = c(-3, -3), c(0, 0), c(3, 3))
+cov_list <- list(cov_identity, 2 * cov_identity, 3 * cov_identity)
+data_generated2 <- simdata_normal(n = c(10, 10), mean = mean_list,
+                                  cov = cov_list)
+dim(data_generated2$x)
 table(data_generated2$y)
-sample_means <- with(data_generated2,
-                     tapply(seq_along(y), y, function(i) {
-                            colMeans(x[i,])
-                     }))
-(sample_means <- do.call(rbind, sample_means))
 }
 
