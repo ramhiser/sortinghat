@@ -106,6 +106,11 @@ simdata_t <- function(n, centroid, cov, df, seed = NULL) {
     stop("The 'cov' matrices must be symmetric and have the same dimensions.")
   }
 
+  # Sets the RNG seed if provided.
+  if (!is.null(seed)) {
+    set.seed(seed)
+  }
+
   # Generates the data in a list of length K. Then, rbinds the data together.
   x <- lapply(seq_len(K), function(k) {
     rmvt(n[k], delta = centroid[[k]], sigma = cov[[k]], df = df[k])
