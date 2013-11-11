@@ -42,3 +42,4 @@ Collate:
     'covariance-matrices.r'
     'helpers.r'
     'simdata-t.r'
+    'simdata-contaminated-normal.r'
