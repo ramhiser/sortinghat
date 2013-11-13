@@ -35,7 +35,6 @@ Collate:
     'sim-data.r'
     'sim-duin.r'
     'sim-friedman.r'
-    'sim-guo.r'
     'sim-intraclass.r'
     'simdata-normal.r'
     'simdata-uniform.r'
@@ -43,3 +42,4 @@ Collate:
     'helpers.r'
     'simdata-t.r'
     'simdata-contaminated-normal.r'
+    'simdata-guo.r'

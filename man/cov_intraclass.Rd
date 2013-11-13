@@ -5,7 +5,7 @@
   cov_intraclass(p, rho, sigma2 = 1)
 }
 \arguments{
-  \item{p}{the dimension of the matrix}
+  \item{p}{the size of the covariance matrix}
 
   \item{rho}{the intraclass covariance (correlation)
   constant}
