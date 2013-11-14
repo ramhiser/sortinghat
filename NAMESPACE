@@ -1,4 +1,5 @@
 export(cov_autocorrelation)
+export(cov_block_autocorrelation)
 export(cov_intraclass)
 export(cv_partition)
 export(error_632)

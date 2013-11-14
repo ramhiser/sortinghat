@@ -1,7 +1,7 @@
 Package: classify
 Title: classify
 Version: 0.1
-Date: 2013-10-10
+Date: 2013-11-13
 Author: John A. Ramey
 Maintainer: John A. Ramey <johnramey@gmail.com>
 Description: classify is a classification framework
@@ -15,8 +15,9 @@ Description: classify is a classification framework
     error rate when necessary.
 Depends:
     R (>= 3.0.1)
-Suggests:
-    parallel
+Imports:
+    bdsmatrix,
+    mvtnorm
 License: MIT
 LazyData: true
 Collate:

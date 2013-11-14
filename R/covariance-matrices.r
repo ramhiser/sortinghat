@@ -87,6 +87,7 @@ cov_autocorrelation <- function(p = 100, rho = 0.9, sigma2 = 1) {
 #' @references Guo, Y., Hastie, T., & Tibshirani, R. (2007). "Regularized linear
 #' discriminant analysis and its application in microarrays," Biostatistics, 8,
 #' 1, 86-100.
+#' @export
 #' @importFrom bdsmatrix bdsmatrix
 #' @param num_blocks the number of blocks in the covariance matrix
 #' @param block_size the size of each square block within the covariance matrix
