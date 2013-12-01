@@ -34,8 +34,6 @@ Collate:
     'helper-which-min.r'
     'loo-boot.r'
     'sim-data.r'
-    'sim-duin.r'
-    'sim-friedman.r'
     'sim-intraclass.r'
     'simdata-normal.r'
     'simdata-uniform.r'
@@ -44,3 +42,4 @@ Collate:
     'simdata-t.r'
     'simdata-contaminated-normal.r'
     'simdata-guo.r'
+    'simdata-friedman.r'
