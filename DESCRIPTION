@@ -33,7 +33,6 @@ Collate:
     'helper-partition-data.r'
     'helper-which-min.r'
     'loo-boot.r'
-    'sim-intraclass.r'
     'simdata-normal.r'
     'simdata-uniform.r'
     'covariance-matrices.r'
