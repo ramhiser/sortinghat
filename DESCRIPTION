@@ -33,7 +33,6 @@ Collate:
     'helper-partition-data.r'
     'helper-which-min.r'
     'loo-boot.r'
-    'sim-data.r'
     'sim-intraclass.r'
     'simdata-normal.r'
     'simdata-uniform.r'
@@ -43,3 +42,4 @@ Collate:
     'simdata-contaminated-normal.r'
     'simdata-guo.r'
     'simdata-friedman.r'
+    'simdata-wrapper.r'
