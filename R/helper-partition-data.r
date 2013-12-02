@@ -28,7 +28,7 @@
 #' cv_partition(iris$Species, num_folds = 10, seed = 42)
 #' cv_partitions(iris$Species, hold_out = 15, seed = 42)
 cv_partition <- function(y, num_folds = 10, hold_out = NULL, seed = NULL) {
-  if(!is.null(seed)) {
+  if (!is.null(seed)) {
     set.seed(seed)
   }
   n <- length(y)
@@ -37,6 +37,7 @@ cv_partition <- function(y, num_folds = 10, hold_out = NULL, seed = NULL) {
     hold_out <- as.integer(hold_out)
     num_folds <- ceiling(n / hold_out)
   }
+
   folds <- split(sample(seq_len(n), n), gl(n = num_folds, k = 1, length = n))
   folds <- lapply(folds, function(fold) {
     list(
@@ -44,7 +45,8 @@ cv_partition <- function(y, num_folds = 10, hold_out = NULL, seed = NULL) {
       test = fold
     )
   })
-  names(folds) <- paste("Fold", names(folds), sep = "")
+  names(folds) <- paste0("Fold", names(folds))
+
   folds
 }
 
