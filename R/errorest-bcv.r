@@ -18,9 +18,9 @@
 #' remaining training data set. Hence, the LOO error rate estimator yields a
 #' large variance for small data sets.
 #'
-#' We use the \code{error_cv} function to compute the cross-validation (CV) error
+#' We use the \code{errorest_cv} function to compute the cross-validation (CV) error
 #' rate estimator for each bootstrap iteration. For more about how the CV error
-#' rate estimator is computed, see the documentation for the \code{error_cv}
+#' rate estimator is computed, see the documentation for the \code{errorest_cv}
 #' function.
 #'
 #' Rather than partitioning the observations into folds, an alternative
@@ -69,14 +69,15 @@
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 #' set.seed(42)
-#' error_bcv(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
+#' errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
+#'              classify = lda_wrapper)
 #' # Output: 0.02213333
 #'
-#' error_bcv(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
-#'           hold_out = 1)
+#' errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
+#'              classify = lda_wrapper, hold_out = 1)
 #' # Output: 0.0224
 #'
-error_bcv <- function(x, y, train, classify, num_bootstraps = 50,
+errorest_bcv <- function(x, y, train, classify, num_bootstraps = 50,
                        num_folds = 10, hold_out = NULL, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
@@ -86,9 +87,9 @@ error_bcv <- function(x, y, train, classify, num_bootstraps = 50,
   # and compute the cross-validation error rate from the bootstrapped data set.
   bcv_error_rates <- sapply(seq_len(num_bootstraps), function(b) {
     training <- sample(seq_along(y), replace = TRUE)
-    error_cv(x = x[training, ], y = y[training], train = train,
-             classify = classify, num_folds = num_folds, hold_out = hold_out,
-             ...)
+    errorest_cv(x = x[training, ], y = y[training], train = train,
+                classify = classify, num_folds = num_folds,
+                hold_out = hold_out, ...)
   })
   
   mean(bcv_error_rates)

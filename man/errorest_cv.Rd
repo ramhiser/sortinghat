@@ -1,9 +1,9 @@
-\name{error_cv}
-\alias{error_cv}
+\name{errorest_cv}
+\alias{errorest_cv}
 \title{Calculates the Cross-Validation Error Rate for a specified classifier given a
 data set.}
 \usage{
-  error_cv(x, y, train, classify, num_folds = 10,
+  errorest_cv(x, y, train, classify, num_folds = 10,
     hold_out = NULL, ...)
 }
 \arguments{
@@ -84,7 +84,7 @@ iris_y <- iris[, 5]
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 set.seed(42)
-error_cv(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
+errorest_cv(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
 # Output: 0.02
 }
 

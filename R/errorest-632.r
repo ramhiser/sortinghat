@@ -7,9 +7,9 @@
 #' error rate and the apparent error rate. Then, we compute a convex combination
 #' of these two error rates estimators.
 #'
-#' To calculate the apparent error rate, we use the \code{error_apparent}
+#' To calculate the apparent error rate, we use the \code{errorest_apparent}
 #' function. Similarly, to calculate the LOO bootstrap (LOO-Boot) error rate, we
-#' use the \code{error_loo_boot} function. In some cases (e.g. simulation study)
+#' use the \code{errorest_loo_boot} function. In some cases (e.g. simulation study)
 #' one, if not both, of these error rate estimators might already be computed.
 #' Hence, we allow the user to provide these values if they are already computed;
 #' by default, the arguments are \code{NULL} to indicate that they are
@@ -50,42 +50,42 @@
 #' set.seed(42)
 #'
 #' # We compute the apparent and LOO-Boot error rates up front to demonstrate
-#' # that they can be computed before the \code{error_632} function is called.
+#' # that they can be computed before the \code{errorest_632} function is called.
 #'
 #' set.seed(42)
-#' apparent <- error_apparent(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                            classify = lda_wrapper)
+#' apparent <- errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda,
+#'                               classify = lda_wrapper)
 #' set.seed(42)
-#' loo_boot <- error_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                            classify = lda_wrapper)
+#' loo_boot <- errorest_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda,
+#'                               classify = lda_wrapper)
 #'
 #' # Each of the following 3 calls should result in the same error rate.
 #' # 1. The apparent error rate is provided, while the LOO-Boot must be computed.
 #' set.seed(42)
-#' error_632(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
-#'           apparent = apparent)
+#' errorest_632(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
+#'              apparent = apparent)
 #' # 2. The LOO-Boot error rate is provided, while the apparent must be computed.
 #' set.seed(42)
-#' error_632(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
-#'           loo_boot = loo_boot)
+#' errorest_632(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
+#'              loo_boot = loo_boot)
 #' # 3. Both error rates are provided, so the calculation is quick.
-#' error_632(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
-#'           apparent = apparent, loo_boot = loo_boot)
+#' errorest_632(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper,
+#'              apparent = apparent, loo_boot = loo_boot)
 #'
 #' # In each case the output is: 0.02194132
-error_632 <- function(x, y, train, classify, num_bootstraps = 50,
+errorest_632 <- function(x, y, train, classify, num_bootstraps = 50,
                            apparent = NULL, loo_boot = NULL, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
   check_out <- check_arguments(x = x, y = y, train = train, classify = classify)
 
   if (is.null(apparent)) {
-    apparent <- error_apparent(x = x, y = y, train = train, classify = classify,
+    apparent <- errorest_apparent(x = x, y = y, train = train, classify = classify,
                                ...)
   }
   
   if (is.null(loo_boot)) {
-    loo_boot <- error_loo_boot(x = x, y = y, train = train, classify = classify,
+    loo_boot <- errorest_loo_boot(x = x, y = y, train = train, classify = classify,
                                num_bootstrap = num_bootstraps, ...)
   }
   0.368 * apparent + 0.632 * loo_boot

@@ -1,9 +1,10 @@
-\name{error_apparent}
-\alias{error_apparent}
-\title{Calculates the Apparent Error Rate for a specified classifier given a data
-set.}
+\name{errorest_boot}
+\alias{errorest_boot}
+\title{Calculates the Bootstrap Error Rate for a specified classifier given a
+data set.}
 \usage{
-  error_apparent(x, y, train, classify, ...)
+  errorest_boot(x, y, train, classify, num_bootstraps = 50,
+    ...)
 }
 \arguments{
   \item{x}{a matrix of n observations (rows) and p features
@@ -18,28 +19,31 @@ set.}
   from the constructed classifier from \code{train}. (See
   details.)}
 
+  \item{num_bootstraps}{the number of bootstrap
+  replications}
+
   \item{...}{additional arguments passed to the function
   specified in \code{train}.}
 }
 \value{
-  object of class \code{errorest}. The object is a named
-  \code{list} that contains the following elements:
-  \itemize{ \item \code{classifier}: the classifier
-  constructed from the given data set \item
-  \code{classifications}: the classified class labels for
-  the test data set \item \code{error}: the calculated
-  error rate estimate }
+  the bootstrapped error rate estimate
 }
 \description{
   For a given data matrix and its corresponding vector of
-  labels, we calculate the apparent error rate (AER) for a
-  given classifier.
+  labels, we calculate the bootstrap error rate for a given
+  classifier.
 }
 \details{
-  The AER simply uses the data set as both the training and
-  test data sets. The AER is well known to be biased
-  downward in that it underestimates the true error rate of
-  the classifier.
+  To calculate the bootstrap error rate, we sample from the
+  data with replacement to obtain a bootstrapped training
+  data set. We then train the given classifier (given in
+  \code{train}) on the bootstrapped training data set and
+  classify the original data set given in the matrix
+  \code{x}. Then we calculate the proportion of
+  misclassified observations, based on the true labels
+  given in \code{y}, to obtain a single bootstrap error
+  rate. We repeat this process \code{num_bootstraps} times
+  and report the average of the bootstrap error rates.
 
   We expect that the first two arguments of the classifier
   function given in \code{train} are \code{x} and \code{y},
@@ -67,12 +71,8 @@ iris_y <- iris[, 5]
 # Because the \\code{classify} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
-error_apparent(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
-# Output: 0.02
-
-The following code is equivalent for this example:
-lda_classifications <- predict(MASS:::lda(x = iris_x, grouping = iris_y), newdata = iris_x)$class
-mean(lda_predictions != iris_y)
-# Output: 0.02
+set.seed(42)
+errorest_boot(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
+# Output: 0.0228
 }
 

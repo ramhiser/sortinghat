@@ -47,9 +47,9 @@
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 #' set.seed(42)
-#' error_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
+#' errorest_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
 #' # Output: 0.02307171
-error_loo_boot <- function(x, y, train, classify, num_bootstraps = 50, ...) {
+errorest_loo_boot <- function(x, y, train, classify, num_bootstraps = 50, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
   check_out <- check_arguments(x = x, y = y, train = train, classify = classify)

@@ -1,9 +1,9 @@
-\name{error_loo_boot}
-\alias{error_loo_boot}
+\name{errorest_loo_boot}
+\alias{errorest_loo_boot}
 \title{Calculates the Leave-One-Out (LOO) Bootstrap Error Rate for a specified
 classifier given a data set.}
 \usage{
-  error_loo_boot(x, y, train, classify,
+  errorest_loo_boot(x, y, train, classify,
     num_bootstraps = 50, ...)
 }
 \arguments{
@@ -74,7 +74,7 @@ iris_y <- iris[, 5]
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 set.seed(42)
-error_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
+errorest_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
 # Output: 0.02307171
 }
 

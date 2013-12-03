@@ -45,14 +45,15 @@
 #' # Because the \code{classify} function returns multiples objects in a list,
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
-#' error_apparent(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
+#' errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
 #' # Output: 0.02
 #' 
 #' The following code is equivalent for this example:
-#' lda_classifications <- predict(MASS:::lda(x = iris_x, grouping = iris_y), newdata = iris_x)$class
-#' mean(lda_predictions != iris_y)
+#' lda_out <- MASS:::lda(x = iris_x, grouping = iris_y)
+#' lda_classifications <- predict(lda_out, newdata = iris_x)$class
+#' mean(lda_classifications != iris_y)
 #' # Output: 0.02
-error_apparent <- function(x, y, train, classify, ...) {
+errorest_apparent <- function(x, y, train, classify, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
   check_out <- check_arguments(x = x, y = y, train = train, classify = classify)

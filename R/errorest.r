@@ -16,9 +16,14 @@ ERROR_EST <- c("cv", "apparent")
 #' @export
 #' @examples
 #' TODO
-errorest <- function(x, y, estimator = "cv", train, predict, hold_out = NULL, num_folds = 10, ...) {
+errorest <- function(x, y, estimator = "cv", train, predict, hold_out = NULL,
+                     num_folds = 10, ...) {
+  x <- as.matrix(x)
+  y <- as.factor(y)
+  
   # Checks for valid arguments.
-  check_out <- check_arguments(x = x, y = y, train = train, predict = predict, ...)
+  check_out <- check_arguments(x = x, y = y, train = train, predict = predict,
+                               ...)
 
   # Checks if the specified estimator matches the given ones.
   estimator <- match.arg(arg = estimator, choices = ERROR_EST)
