@@ -1,9 +1,9 @@
-\name{simdata_wrapper}
-\alias{simdata_wrapper}
+\name{simdata}
+\alias{simdata}
 \title{Wrapper function to generate data from a variety of data-generating families
 for classification studies.}
 \usage{
-  simdata_wrapper(family = c("uniform", "normal", "t", "contaminated", "guo", "friedman"),
+  simdata(family = c("uniform", "normal", "t", "contaminated", "guo", "friedman"),
     ...)
 }
 \arguments{
@@ -50,9 +50,8 @@ for classification studies.}
   please see its respective documentation.
 }
 \examples{
-set.seed(42)
-data_normal <- simdata_wrapper(family = "normal", n = c(10, 20), mean = c(0, 1), cov = diag(2))
-data_uniform <- simdata_wrapper(family = "uniform", delta = 2, seed = 42)
-data_friedman <- simdata_wrapper(family = "friedman", experiment = 4)
+data_normal <- simdata(family = "normal", n = c(10, 20), mean = c(0, 1), cov = diag(2), seed = 42)
+data_uniform <- simdata(family = "uniform", delta = 2, seed = 42)
+data_friedman <- simdata(family = "friedman", experiment = 4, seed = 42)
 }
 
