@@ -3,7 +3,7 @@
 \title{Calculates the Cross-Validation Error Rate for a specified classifier given a
 data set.}
 \usage{
-  errorest_cv(x, y, train, classify, num_folds = 10,
+  errorest_cv(x, y, train, predict, num_folds = 10,
     hold_out = NULL, ...)
 }
 \arguments{
@@ -15,7 +15,7 @@ data set.}
   \item{train}{a function that builds the classifier. (See
   details.)}
 
-  \item{classify}{a function that classifies observations
+  \item{predict}{a function that classifies observations
   from the constructed classifier from \code{train}. (See
   details.)}
 
@@ -30,7 +30,7 @@ data set.}
   specified in \code{train}.}
 }
 \value{
-  the calculated CV error rate estimate
+  the calculated CV error-rate estimate
 }
 \description{
   For a given data matrix and its corresponding vector of
@@ -43,9 +43,8 @@ data set.}
   within the fold as a test data set, while the remaining
   observations are considered as a training data set. We
   then calculate the number of misclassified observations
-  within the fold. We aggregate the number of misclassified
-  observations across all of the folds via a weighted
-  average to compute the CV error rate.
+  within the fold. The CV error rate is the proportion of
+  misclassified observations across all folds.
 
   Rather than partitioning the observations into folds, an
   alternative convention is to specify the 'hold-out' size
@@ -57,34 +56,39 @@ data set.}
   \code{hold_out} argument is specified (i.e. is not
   \code{NULL}).
 
-  We expect that the first two arguments of the classifier
-  function given in \code{train} are \code{x} and \code{y},
+  For the given classifier, two functions must be provided
+  1. to train the classifier and 2. to classify (predict)
+  unlabeled observations. The training function is provided
+  as \code{train} and the prediction function as
+  \code{predict}.
+
+  We expect that the first two arguments of the
+  \code{train} function are \code{x} and \code{y},
   corresponding to the data matrix and the vector of their
-  labels. Additional arguments can be passed to the
-  \code{train} function. The returned object should be a
-  classifier that will be passed to the function given in
-  the \code{classify} argument.
+  labels, respectively. Additional arguments can be passed
+  to the \code{train} function.
 
   We stay with the usual R convention for the
-  \code{classify} function. We expect that this function
+  \code{predict} function. We expect that this function
   takes two arguments: 1. an \code{object} argument which
   contains the trained classifier returned from the
   function specified in \code{train}; and 2. a
   \code{newdata} argument which contains a matrix of
   observations to be classified -- the matrix should have
   rows corresponding to the individual observations and
-  columns corresponding to the features (covariates).
+  columns corresponding to the features (covariates). For
+  an example, see \code{\link[MASS]{lda}}.
 }
 \examples{
 require('MASS')
 iris_x <- data.matrix(iris[, -5])
 iris_y <- iris[, 5]
 
-# Because the \\code{classify} function returns multiples objects in a list,
+# Because the \\code{predict} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 set.seed(42)
-errorest_cv(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
-# Output: 0.02
+errorest_cv(x = iris_x, y = iris_y, train = MASS:::lda, predict = lda_wrapper)
+# Output: 0.02666667
 }
 

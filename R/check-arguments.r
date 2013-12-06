@@ -13,10 +13,10 @@
 #' @param x a matrix of n observations and p features
 #' @param y a vector of n class labels
 #' @param train a function that builds the classifier (See details)
-#' @param classify a function that classified observations from the constructed
+#' @param predict a function that classified observations from the constructed
 #' classifier from \code{train}. (See details.)
 #' @return \code{TRUE} invisibly if no errors are encountered.
-check_arguments <- function(x, y, train, classify, ...) {
+check_arguments <- function(x, y, train, predict, ...) {
   if (nrow(x) != length(y)) {
     stop("The number of observations must match the number of class labels.")
   }
@@ -34,12 +34,12 @@ check_arguments <- function(x, y, train, classify, ...) {
     stop("The 'train' function does not exist.")
   }
 
-  if (missing(classify) || is.null(classify)) {
-    classify <- match.fun("classify")
+  if (missing(predict) || is.null(predict)) {
+    predict <- match.fun("predict")
   } else {
-    classify <- try(match.fun(classify), silent = TRUE)
-    if (inherits(classify, "try-error")) {
-      stop("The 'classify' function does not exist.")
+    predict <- try(match.fun(predict), silent = TRUE)
+    if (inherits(predict, "try-error")) {
+      stop("The 'predict' function does not exist.")
     }
   }
   invisible(TRUE)

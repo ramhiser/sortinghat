@@ -2,26 +2,24 @@
 #' specified classifier given a data set.
 #'
 #' For a given data matrix and its corresponding vector of labels, we calculate
-#' the bootstrap cross-validation (BCV) error rate for a given classifier.
+#' the bootstrap cross-validation (BCV) error rate from Fu, Carroll, and Wang
+#' (2005) for a given classifier.
 #'
 #' To calculate the BCV error rate, we sample from the data with replacement to
 #' obtain a bootstrapped training data set. We then compute a cross-validation
 #' error rate with the given classifier (given in \code{train}) on the
 #' bootstrapped training data set. We repeat this process \code{num_bootstraps}
-#' times to obtain a set of bootstrapped cross-validation error rates. We
-#' report the average of these error rates.
+#' times to obtain a set of bootstrapped cross-validation error rates. We report
+#' the average of these error rates. The \code{\link{errorest_cv}} function is
+#' used to compute the cross-validation (CV) error rate estimator for each
+#' bootstrap iteration.
 #'
-#' Fu, Carroll, and Wang (2005) note that the BCV method works well because it is
+#' Fu et al. (2005) note that the BCV method works well because it is
 #' a bagging prediction error. Furthermore, consider the leave-one-out (LOO) error
 #' rate estimator. For small sample sizes, the data are sparse, so that the
 #' left out observation has a high probability of being far in distance from the
 #' remaining training data set. Hence, the LOO error rate estimator yields a
 #' large variance for small data sets.
-#'
-#' We use the \code{errorest_cv} function to compute the cross-validation (CV) error
-#' rate estimator for each bootstrap iteration. For more about how the CV error
-#' rate estimator is computed, see the documentation for the \code{errorest_cv}
-#' function.
 #'
 #' Rather than partitioning the observations into folds, an alternative
 #' convention is to specify the 'hold-out' size for each test data set. Note that
@@ -51,7 +49,7 @@
 #' @param x a matrix of n observations (rows) and p features (columns)
 #' @param y a vector of n class labels
 #' @param train a function that builds the classifier. (See details.)
-#' @param classify a function that classifies observations from the constructed
+#' @param predict a function that classifies observations from the constructed
 #' classifier from \code{train}. (See details.)
 #' @param num_bootstraps the number of bootstrap replications
 #' @param num_folds the number of cross-validation folds. Ignored if
@@ -65,30 +63,30 @@
 #' iris_x <- data.matrix(iris[, -5])
 #' iris_y <- iris[, 5]
 #'
-#' # Because the \code{classify} function returns multiples objects in a list,
+#' # Because the \code{predict} function returns multiples objects in a list,
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 #' set.seed(42)
 #' errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-#'              classify = lda_wrapper)
+#'              predict = lda_wrapper)
 #' # Output: 0.02213333
 #'
 #' errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-#'              classify = lda_wrapper, hold_out = 1)
-#' # Output: 0.0224
+#'              num_bootstraps = 20, predict = lda_wrapper, hold_out = 1)
+#' # Output: 0.022
 #'
-errorest_bcv <- function(x, y, train, classify, num_bootstraps = 50,
-                       num_folds = 10, hold_out = NULL, ...) {
+errorest_bcv <- function(x, y, train, predict, num_bootstraps = 50,
+                         num_folds = 10, hold_out = NULL, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
-  check_out <- check_arguments(x = x, y = y, train = train, classify = classify)
+  check_out <- check_arguments(x = x, y = y, train = train, predict = predict)
 
   # For each bootstrap replicate, we sample with replacement from the data set
   # and compute the cross-validation error rate from the bootstrapped data set.
   bcv_error_rates <- sapply(seq_len(num_bootstraps), function(b) {
     training <- sample(seq_along(y), replace = TRUE)
     errorest_cv(x = x[training, ], y = y[training], train = train,
-                classify = classify, num_folds = num_folds,
+                predict = predict, num_folds = num_folds,
                 hold_out = hold_out, ...)
   })
   
