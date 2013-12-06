@@ -56,6 +56,7 @@
 #' # Because the \code{predict} function returns multiples objects in a list,
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
+#' 
 #' set.seed(42)
 #' errorest_cv(x = iris_x, y = iris_y, train = MASS:::lda, predict = lda_wrapper)
 #' # Output: 0.02666667

@@ -23,7 +23,6 @@ LazyData: true
 Collate:
     'check-arguments.r'
     'classify-package.r'
-    'errorest.r'
     'helper-partition-data.r'
     'helper-which-min.r'
     'simdata-normal.r'
@@ -42,3 +41,4 @@ Collate:
     'errorest-boot.r'
     'errorest-cv.r'
     'errorest-loo-boot.r'
+    'errorest-wrapper.r'
