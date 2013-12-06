@@ -87,7 +87,6 @@ iris_y <- iris[, 5]
 # Because the \\code{predict} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
-set.seed(42)
 
 # We compute the apparent and LOO-Boot error rates up front to demonstrate
 # that they can be computed before the \\code{errorest_632} function is called.

@@ -58,7 +58,6 @@
 #' # Because the \code{predict} function returns multiples objects in a list,
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
-#' set.seed(42)
 #'
 #' # We compute the apparent and LOO-Boot error rates up front to demonstrate
 #' # that they can be computed before the \code{errorest_632} function is called.
@@ -92,12 +91,12 @@ errorest_632 <- function(x, y, train, predict, num_bootstraps = 50,
 
   if (is.null(apparent)) {
     apparent <- errorest_apparent(x = x, y = y, train = train, predict = predict,
-                               ...)
+                                  ...)
   }
   
   if (is.null(loo_boot)) {
     loo_boot <- errorest_loo_boot(x = x, y = y, train = train, predict = predict,
-                               num_bootstrap = num_bootstraps, ...)
+                                  num_bootstrap = num_bootstraps, ...)
   }
   0.368 * apparent + 0.632 * loo_boot
 }
