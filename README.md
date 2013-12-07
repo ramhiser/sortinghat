@@ -20,7 +20,7 @@ library(devtools)
 install_github('classify', 'ramey')
 ```
 
-# Benchmarking
+## Benchmarking
 
 A primary goal of `classify` is to enable rapid benchmarking across a variety of
 classification scenarios. To achieve this, we provide a large selection of both
@@ -28,22 +28,21 @@ real and simulated data sets collected from the literature and around the
 Internet. With `classify`, researchers can quickly replicate findings within the
 literature as well as rapidly prototype new classifiers.
 
-The list of real and simulated data sets will continue to grow. Contributions
-are greatly appreciated as pull requests.
+*The list of real and simulated data sets will continue to grow. Contributions
+are greatly appreciated as pull requests.*
 
-## Data Sets
+### Data Sets
 
 Benchmark data sets are useful for evaluating and comparing classifiers...
 
-(Work in Progress: Version 0.2 will include a collection of benchmark data sets)
+*(Work in Progress: Version 0.2 will include a collection of benchmark data sets)*
 
-## Simulated Data Sets
+### Simulated Data Sets
 
-In addition to providing a large collection of benchmark data sets, one of the
-main goals of `classify` is to provide a large collection of data-generating
-models for simulations based on studies in the literature. Thus far, we have
-added multivariate simulation models based on the following family of
-distributions:
+In addition to benchmark data sets, `classify` provide a large collection of
+data-generating models for simulations based on studies in the literature. Thus
+far, we have added multivariate simulation models based on the following family
+of distributions:
 
 - Multivariate Normal
 - Multivariate Student's t
@@ -58,11 +57,11 @@ Moreover, data can be generated based on the well-known configurations from:
 The simulated data sets listed above can be generated via the `simdata`
 function.
 
-# Error-Rate Estimation
+## Error-Rate Estimation
 
-Classifier superiority is often determined by classification error rate
-(sometimes called probability of misclassification or confusion rate). To assess
-classification efficacy, we utilize the following error-rate estimators:
+Classifier superiority is often determined by classification error rate (1 -
+accuracy). To assess classification efficacy, we utilize the following
+error-rate estimators:
 
 - Cross-validation Error Rate
 - Bootstrap Error Rate
