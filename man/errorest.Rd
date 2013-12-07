@@ -12,6 +12,9 @@
   \item{y}{a vector of n class labels. (Must to be a
   'factor'.)}
 
+  \item{estimator}{the estimator used to compute the error
+  rate}
+
   \item{train}{a function that builds the classifier. (See
   details.)}
 

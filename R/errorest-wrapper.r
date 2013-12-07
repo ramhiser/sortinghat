@@ -21,11 +21,14 @@
 #'
 #' @param x a matrix of n observations and p features
 #' @param y a vector of n class labels. (Must to be a 'factor'.)
+#' @param estimator the estimator used to compute the error rate
 #' @param train a function that builds the classifier. (See details.)
 #' @param predict a function that classifies observations from the constructed
 #' classifier from \code{train}. (See Details.)
 #' @param ... additional arguments passed to the error-rate estimation code
 #' @return an estimate of the classifier's error rate
+#' 
+#' @import MASS
 #' @export
 #' @examples
 #' require('MASS')

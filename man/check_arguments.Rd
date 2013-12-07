@@ -2,7 +2,7 @@
 \alias{check_arguments}
 \title{Checks the arguments passed to the error rate estimator functions.}
 \usage{
-  check_arguments(x, y, train, predict, ...)
+  check_arguments(x, y, train, predict)
 }
 \arguments{
   \item{x}{a matrix of n observations and p features}

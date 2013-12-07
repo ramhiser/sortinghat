@@ -26,7 +26,8 @@ for classification studies.}
   \describe{
   \item{\code{\link{simdata_normal}}:}{Multivariate normal}
   \item{\code{\link{simdata_t}}:}{Multivariate Student's t}
-  \item{\code{\link{simdata_unif}}:}{Multivariate uniform}
+  \item{\code{\link{simdata_uniform}}:}{Multivariate
+  uniform}
   \item{\code{\link{simdata_contaminated}}:}{Multivariate
   contaminated normal}
   \item{\code{\link{simdata_guo}}:}{Simulation

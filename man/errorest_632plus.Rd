@@ -22,6 +22,14 @@
   \item{num_bootstraps}{the number of bootstrap
   replications}
 
+  \item{apparent}{the apparent error rate for the given
+  classifier. If \code{NULL}, this argument is ignored. See
+  Details.}
+
+  \item{loo_boot}{the leave-one-out bootstrap error rate
+  for the given classifier. If \code{NULL}, this argument
+  is ignored. See Details.}
+
   \item{...}{additional arguments passed to the function
   specified in \code{train}.}
 }

@@ -45,7 +45,7 @@
 #' @export
 #' @references Fu, W.J., Carroll, R.J., and Wang, S. (2005), "Estimating
 #' misclassification error with small samples via bootstrap cross-validation,"
-#' Bioinformatics, vol. 21, no. 9, pp. 1979–1986.
+#' Bioinformatics, vol. 21, no. 9, pp. 1979-1986.
 #' @param x a matrix of n observations (rows) and p features (columns)
 #' @param y a vector of n class labels
 #' @param train a function that builds the classifier. (See details.)
@@ -70,10 +70,6 @@
 #' errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
 #'              predict = lda_wrapper)
 #' # Output: 0.02213333
-#'
-#' errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-#'              num_bootstraps = 20, predict = lda_wrapper, hold_out = 1)
-#' # Output: 0.022
 #'
 errorest_bcv <- function(x, y, train, predict, num_bootstraps = 50,
                          num_folds = 10, hold_out = NULL, ...) {

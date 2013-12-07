@@ -16,7 +16,7 @@
 #' @param predict a function that classified observations from the constructed
 #' classifier from \code{train}. (See details.)
 #' @return \code{TRUE} invisibly if no errors are encountered.
-check_arguments <- function(x, y, train, predict, ...) {
+check_arguments <- function(x, y, train, predict) {
   if (nrow(x) != length(y)) {
     stop("The number of observations must match the number of class labels.")
   }

@@ -84,7 +84,7 @@
 #'
 #' # In each case the output is: 0.02194132
 errorest_632 <- function(x, y, train, predict, num_bootstraps = 50,
-                           apparent = NULL, loo_boot = NULL, ...) {
+                         apparent = NULL, loo_boot = NULL, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
   check_out <- check_arguments(x = x, y = y, train = train, predict = predict)
@@ -96,7 +96,7 @@ errorest_632 <- function(x, y, train, predict, num_bootstraps = 50,
   
   if (is.null(loo_boot)) {
     loo_boot <- errorest_loo_boot(x = x, y = y, train = train, predict = predict,
-                                  num_bootstrap = num_bootstraps, ...)
+                                  num_bootstraps = num_bootstraps, ...)
   }
   0.368 * apparent + 0.632 * loo_boot
 }

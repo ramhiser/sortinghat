@@ -1,11 +1,12 @@
 \name{all_equal}
 \alias{all_equal}
-\title{Function to ensure all elements in a vector are the same}
+\title{Function to check whether all elements in a numeric vector are equal within
+some tolerance}
 \usage{
   all_equal(x, tol = .Machine$double.eps^0.5)
 }
 \arguments{
-  \item{x}{vector}
+  \item{x}{numeric vector}
 
   \item{tol}{tolerance value}
 }
@@ -13,7 +14,8 @@
   logical value
 }
 \description{
-  Function to ensure all elements in a vector are the same
+  Function to check whether all elements in a numeric
+  vector are equal within some tolerance
 }
 \examples{
 # Returns TRUE

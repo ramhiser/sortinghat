@@ -103,15 +103,11 @@ set.seed(42)
 errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
              predict = lda_wrapper)
 # Output: 0.02213333
-
-errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-             num_bootstraps = 20, predict = lda_wrapper, hold_out = 1)
-# Output: 0.022
 }
 \references{
   Fu, W.J., Carroll, R.J., and Wang, S. (2005), "Estimating
   misclassification error with small samples via bootstrap
   cross-validation," Bioinformatics, vol. 21, no. 9, pp.
-  1979–1986.
+  1979-1986.
 }
 

@@ -48,6 +48,10 @@
 #' @param predict a function that classifies observations from the constructed
 #' classifier from \code{train}. (See details.)
 #' @param num_bootstraps the number of bootstrap replications
+#' @param apparent the apparent error rate for the given classifier. If
+#' \code{NULL}, this argument is ignored. See Details.
+#' @param loo_boot the leave-one-out bootstrap error rate for the given
+#' classifier. If \code{NULL}, this argument is ignored. See Details.
 #' @param ... additional arguments passed to the function specified in
 #' \code{train}.
 #' @return the 632+ error rate estimate
@@ -87,7 +91,7 @@
 #'
 #' # In each case the output is: 0.02194472
 errorest_632plus <- function(x, y, train, predict, num_bootstraps = 50,
-                           apparent = NULL, loo_boot = NULL, ...) {
+                             apparent = NULL, loo_boot = NULL, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
   check_out <- check_arguments(x = x, y = y, train = train, predict = predict)
@@ -100,7 +104,7 @@ errorest_632plus <- function(x, y, train, predict, num_bootstraps = 50,
   if (is.null(loo_boot)) {
     loo_boot <- errorest_loo_boot(x = x, y = y, train = train,
                                   predict = predict,
-                                  num_bootstrap = num_bootstraps, ...)
+                                  num_bootstraps = num_bootstraps, ...)
   }
 
   # To calculate the estimator for the 'no-information error rate', we build the

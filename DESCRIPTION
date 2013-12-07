@@ -13,10 +13,14 @@ Description: classify is a classification framework to streamline the
 Depends:
     R (>= 3.0.1)
 Imports:
+    MASS,
     bdsmatrix,
     mvtnorm
-License: MIT
+Suggests:
+    testthat
+License: MIT + file LICENSE
 LazyData: true
+URL: http://github.com/ramhiser/classify
 Collate:
     'check-arguments.r'
     'classify-package.r'
