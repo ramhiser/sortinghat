@@ -9,8 +9,8 @@
   these. See `?simdata` for a list of all the available simulated data sets and
   the implementation details.
 
-- Several error-rate estimators are available, including cross-validation .632,
-  and several others. The name of each estimator's function is prefaced with
+- Several error-rate estimators are available, including cross-validation, .632,
+  .632+, and others. The name of each estimator's function is prefaced with
   `errorest_`. Also, `errorest` is a wrapper function around the error-rate
   estimators implemented. See `?errorest` for a list of all available error-rate
   estimators and the implementation details.
@@ -23,14 +23,14 @@
   sets with a specified percentage in each.
 
 - `which_min`: Determines the index (location) of the minimum element in a
-  vector. Breaks ties in a variety of way -- in particular, at random. This
-  function is intended to replace the base 'which.min' function.
+  vector. Breaks ties in a variety of ways -- in particular, at random. This
+  function is intended to replace the base `which.min` function.
 
-- `cov_intraclass`: Constructs a p-dimensional covariance matrix.
+- `cov_intraclass`: Constructs a p-dimensional intraclass covariance matrix.
 
 - `cov_autocorrelation`: Constructs a p-dimensional covariance matrix with an
-  autocorrelation (autoregressive) structure.
+  autocorrelation structure.
 
-- `cov_block_autocorrelation`: Constructs a p-dimensional block-diagona
+- `cov_block_autocorrelation`: Constructs a p-dimensional block-diagonal
   covariance matrix with autocorrelated blocks. Based on Guo, Hastie, and
   Tibshirani (2007).
