@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 
 context("Bootstrap Cross-Validation Error Rate")
 
@@ -15,7 +15,7 @@ test_that("Error rate works correctly on the Iris data set using MASS:::lda", {
   # Testing default arguments
   set.seed(42)
   error_rate <- errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-                             predict = lda_wrapper)
+                             classify = lda_wrapper)
 
   # This value was computed previously.
   expected_estimate <- 0.02213333  
@@ -25,7 +25,7 @@ test_that("Error rate works correctly on the Iris data set using MASS:::lda", {
   # Testing some arguments
   set.seed(42)
   error_rate <- errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-                             predict = lda_wrapper, num_bootstraps = 10,
+                             classify = lda_wrapper, num_bootstraps = 10,
                              hold_out = 1)
 
   # This value was computed previously.

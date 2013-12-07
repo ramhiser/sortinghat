@@ -2,7 +2,7 @@
 \alias{errorest_632plus}
 \title{Calculates the .632+ Error Rate for a specified classifier given a data set.}
 \usage{
-  errorest_632plus(x, y, train, predict,
+  errorest_632plus(x, y, train, classify,
     num_bootstraps = 50, apparent = NULL, loo_boot = NULL,
     ...)
 }
@@ -15,7 +15,7 @@
   \item{train}{a function that builds the classifier. (See
   details.)}
 
-  \item{predict}{a function that classifies observations
+  \item{classify}{a function that classifies observations
   from the constructed classifier from \code{train}. (See
   details.)}
 
@@ -91,7 +91,7 @@ require('MASS')
 iris_x <- data.matrix(iris[, -5])
 iris_y <- iris[, 5]
 
-# Because the \\code{predict} function returns multiples objects in a list,
+# Because the \\code{classify} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 set.seed(42)
@@ -101,23 +101,23 @@ set.seed(42)
 
 set.seed(42)
 apparent <- errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda,
-                              predict = lda_wrapper)
+                              classify = lda_wrapper)
 set.seed(42)
 loo_boot <- errorest_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda,
-                              predict = lda_wrapper)
+                              classify = lda_wrapper)
 
 # Each of the following 3 calls should result in the same error rate.
 # 1. The apparent error rate is provided, while the LOO-Boot must be computed.
 set.seed(42)
 errorest_632plus(x = iris_x, y = iris_y, train = MASS:::lda,
-                 predict = lda_wrapper, apparent = apparent)
+                 classify = lda_wrapper, apparent = apparent)
 # 2. The LOO-Boot error rate is provided, while the apparent must be computed.
 set.seed(42)
 errorest_632plus(x = iris_x, y = iris_y, train = MASS:::lda,
-                 predict = lda_wrapper, loo_boot = loo_boot)
+                 classify = lda_wrapper, loo_boot = loo_boot)
 # 3. Both error rates are provided, so the calculation is quick.
 errorest_632plus(x = iris_x, y = iris_y, train = MASS:::lda,
-                 predict = lda_wrapper, apparent = apparent,
+                 classify = lda_wrapper, apparent = apparent,
                  loo_boot = loo_boot)
 
 # In each case the output is: 0.02194472

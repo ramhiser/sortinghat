@@ -1,6 +1,6 @@
-# classify 0.1
+# sortinghat 0.1
 
-- Initial release of `classify`
+- Initial release of `sortinghat`
 
 ## New Features
 

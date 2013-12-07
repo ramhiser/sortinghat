@@ -4,7 +4,7 @@
 \usage{
   errorest(x, y,
     estimator = c("cv", "boot", "632", "632+", "bcv", "loo-boot", "apparent"),
-    train, predict, ...)
+    train, classify, ...)
 }
 \arguments{
   \item{x}{a matrix of n observations and p features}
@@ -18,7 +18,7 @@
   \item{train}{a function that builds the classifier. (See
   details.)}
 
-  \item{predict}{a function that classifies observations
+  \item{classify}{a function that classifies observations
   from the constructed classifier from \code{train}. (See
   Details.)}
 
@@ -59,20 +59,20 @@ require('MASS')
 iris_x <- data.matrix(iris[, -5])
 iris_y <- iris[, 5]
 
-# Because the \\code{predict} function returns multiples objects in a list,
+# Because the \\code{classify} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 
 # Cross-Validation (default)
-errorest(x = iris_x, y = iris_y, train = MASS:::lda, predict = lda_wrapper)
+errorest(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
 
 # .632
 errorest(x = iris_x, y = iris_y, estimator = "632", train = MASS:::lda,
-         predict = lda_wrapper)
+         classify = lda_wrapper)
 
 # Bootstrap Error Rate
 # The argument 'num_bootstraps' is passed on to 'errorest_boot'
 errorest(x = iris_x, y = iris_y, estimator = "boot", train = MASS:::lda,
-         predict = lda_wrapper, num_bootstraps = 42)
+         classify = lda_wrapper, num_bootstraps = 42)
 }
 

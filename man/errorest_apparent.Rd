@@ -3,7 +3,7 @@
 \title{Calculates the Apparent Error Rate for a specified classifier given a data
 set.}
 \usage{
-  errorest_apparent(x, y, train, predict, ...)
+  errorest_apparent(x, y, train, classify, ...)
 }
 \arguments{
   \item{x}{a matrix of n observations (rows) and p features
@@ -14,7 +14,7 @@ set.}
   \item{train}{a function that builds the classifier. (See
   details.)}
 
-  \item{predict}{a function that classifies observations
+  \item{classify}{a function that classifies observations
   from the classifier constructed by \code{train}. (See
   details.)}
 
@@ -39,10 +39,10 @@ set.}
   the classifier.
 
   For the given classifier, two functions must be provided
-  1. to train the classifier and 2. to classify (predict)
-  unlabeled observations. The training function is provided
-  as \code{train} and the prediction function as
-  \code{predict}.
+  1. to train the classifier and 2. to classify unlabeled
+  observations. The training function is provided as
+  \code{train} and the classification function as
+  \code{classify}.
 
   We expect that the first two arguments of the
   \code{train} function are \code{x} and \code{y},
@@ -51,7 +51,7 @@ set.}
   to the \code{train} function.
 
   We stay with the usual R convention for the
-  \code{predict} function. We expect that this function
+  \code{classify} function. We expect that this function
   takes two arguments: 1. an \code{object} argument which
   contains the trained classifier returned from the
   function specified in \code{train}; and 2. a
@@ -66,10 +66,10 @@ require('MASS')
 iris_x <- data.matrix(iris[, -5])
 iris_y <- iris[, 5]
 
-# Because the \\code{predict} function returns multiples objects in a list,
+# Because the \\code{classify} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
-errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda, predict = lda_wrapper)
+errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda, classify = lda_wrapper)
 # Output: 0.02
 
 # The following code is equivalent for this example:

@@ -3,7 +3,7 @@
 \title{Calculates the Bootstrap Cross-Validation (BCV) Error Rate Estimator for a
 specified classifier given a data set.}
 \usage{
-  errorest_bcv(x, y, train, predict, num_bootstraps = 50,
+  errorest_bcv(x, y, train, classify, num_bootstraps = 50,
     num_folds = 10, hold_out = NULL, ...)
 }
 \arguments{
@@ -15,7 +15,7 @@ specified classifier given a data set.}
   \item{train}{a function that builds the classifier. (See
   details.)}
 
-  \item{predict}{a function that classifies observations
+  \item{classify}{a function that classifies observations
   from the constructed classifier from \code{train}. (See
   details.)}
 
@@ -55,13 +55,13 @@ specified classifier given a data set.}
   bootstrap iteration.
 
   Fu et al. (2005) note that the BCV method works well
-  because it is a bagging prediction error. Furthermore,
-  consider the leave-one-out (LOO) error rate estimator.
-  For small sample sizes, the data are sparse, so that the
-  left out observation has a high probability of being far
-  in distance from the remaining training data set. Hence,
-  the LOO error rate estimator yields a large variance for
-  small data sets.
+  because it is a bagging classification error.
+  Furthermore, consider the leave-one-out (LOO) error rate
+  estimator. For small sample sizes, the data are sparse,
+  so that the left out observation has a high probability
+  of being far in distance from the remaining training data
+  set. Hence, the LOO error rate estimator yields a large
+  variance for small data sets.
 
   Rather than partitioning the observations into folds, an
   alternative convention is to specify the 'hold-out' size
@@ -96,12 +96,12 @@ require('MASS')
 iris_x <- data.matrix(iris[, -5])
 iris_y <- iris[, 5]
 
-# Because the \\code{predict} function returns multiples objects in a list,
+# Because the \\code{classify} function returns multiples objects in a list,
 # we provide a wrapper function that returns only the class labels.
 lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 set.seed(42)
 errorest_bcv(x = iris_x, y = iris_y, train = MASS:::lda,
-             predict = lda_wrapper)
+             classify = lda_wrapper)
 # Output: 0.02213333
 }
 \references{

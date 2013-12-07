@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 library('mvtnorm')
 
 context("Generate normal populations with Friedman et al.'s (1989) covariance structure")
@@ -12,7 +12,7 @@ test_that("Experiment #1 works correctly.", {
   sample_sizes <- c(10, 20, 30)
   p <- 20
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_friedman(n = sample_sizes, p = p, experiment = 1, seed = seed)
 
   # Manually generated test data
@@ -46,7 +46,7 @@ test_that("Experiment #2 works correctly.", {
   sample_sizes <- c(15, 15, 15)
   p <- 30
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_friedman(n = sample_sizes, p = p, experiment = 2, seed = seed)
 
   # Manually generated test data
@@ -80,7 +80,7 @@ test_that("Experiment #3 works correctly.", {
   sample_sizes <- c(10, 20, 30)
   p <- 30
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_friedman(n = sample_sizes, p = p, experiment = 3, seed = seed)
 
   # Manually generated test data
@@ -121,7 +121,7 @@ test_that("Experiment #4 works correctly.", {
   sample_sizes <- c(10, 20, 30)
   p <- 30
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_friedman(n = sample_sizes, p = p, experiment = 4, seed = seed)
 
   # Manually generated test data
@@ -162,7 +162,7 @@ test_that("Experiment #5 works correctly.", {
   sample_sizes <- c(10, 20, 30)
   p <- 30
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_friedman(n = sample_sizes, p = p, experiment = 5, seed = seed)
 
   # Manually generated test data
@@ -203,7 +203,7 @@ test_that("Experiment #6 works correctly.", {
   sample_sizes <- c(10, 20, 30)
   p <- 30
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_friedman(n = sample_sizes, p = p, experiment = 6, seed = seed)
 
   # Manually generated test data

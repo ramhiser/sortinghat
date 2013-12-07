@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 library('mvtnorm')
 
 context("Generate multivariate t populations")
@@ -14,7 +14,7 @@ test_that("Two multivariate t populations are generated correctly", {
   cov_identity <- diag(2)
   df <- 4
   
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_t(n = sample_sizes, centroid = centroids, cov = cov_identity,
                     df = df, seed = seed)
 
@@ -46,7 +46,7 @@ test_that("Three multivariate t populations are generated correctly", {
   cov_list <- list(cov_identity, 2 * cov_identity, 3 * cov_identity)
   df <- c(3, 4, 5)
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_t(n = sample_sizes, centroid = centroids, cov = cov_list,
                     df = df, seed = seed)
 

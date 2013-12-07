@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 library('mvtnorm')
 
 context("Generate multivariate normal populations")
@@ -13,7 +13,7 @@ test_that("Two multivariate normal populations are generated correctly", {
   means <- list(c(1, 0), c(0, 1))
   cov_identity <- diag(2)
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_normal(n = sample_sizes, mean = means, cov = cov_identity,
                          seed = seed)
 
@@ -42,7 +42,7 @@ test_that("Three multivariate normal populations are generated correctly", {
   cov_identity <- diag(2)
   cov_list <- list(cov_identity, 2 * cov_identity, 3 * cov_identity)
 
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_normal(n = sample_sizes, mean = means, cov = cov_list,
                          seed = seed)
 

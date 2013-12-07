@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 library('mvtnorm')
 
 context("Generate multivariate contaminated normal populations")
@@ -16,7 +16,7 @@ test_that("Two multivariate contaminated normal populations are generated correc
   epsilon <- 0.05
   kappa <- 10
   
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_contaminated(n = sample_sizes, mean = means, cov = cov_identity,
                                epsilon = epsilon, kappa = kappa, seed = seed)
 
@@ -57,7 +57,7 @@ test_that("Three multivariate contaminated normal populations are generated corr
   epsilon <- c(0.05, 0.1, 0.2)
   kappa <- c(2, 5, 10)
   
-  # Data from classify
+  # Data from sortinghat
   data <- simdata_contaminated(n = sample_sizes, mean = means, cov = cov_list,
                                epsilon = epsilon, kappa = kappa, seed = seed)
 

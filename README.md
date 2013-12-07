@@ -1,31 +1,31 @@
-# classify
+# sortinghat
 
-The `classify` package is a framework in R to streamline the evaluation of
+The `sortinghat` package is a framework in R to streamline the evaluation of
 classifiers (classification models and algorithms) and seeks to determine the
 best classifiers on a variety of simulated and benchmark data sets with a
 collection of benchmark metrics.
 
 ## Installation
 
-You can install the stable version on [CRAN](http://cran.r-project.org/package=classify):
+You can install the stable version on [CRAN](http://cran.r-project.org/package=sortinghat):
 
 ```r
-install.packages('classify', dependencies = TRUE)
+install.packages('sortinghat', dependencies = TRUE)
 ```
 
 If you prefer to download the latest version, instead type:
 
 ```r
 library(devtools)
-install_github('classify', 'ramey')
+install_github('sortinghat', 'ramey')
 ```
 
 ## Benchmarking
 
-A primary goal of `classify` is to enable rapid benchmarking across a variety of
+A primary goal of `sortinghat` is to enable rapid benchmarking across a variety of
 classification scenarios. To achieve this, we provide a large selection of both
 real and simulated data sets collected from the literature and around the
-Internet. With `classify`, researchers can quickly replicate findings within the
+Internet. With `sortinghat`, researchers can quickly replicate findings within the
 literature as well as rapidly prototype new classifiers.
 
 *The list of real and simulated data sets will continue to grow. Contributions
@@ -39,7 +39,7 @@ Benchmark data sets are useful for evaluating and comparing classifiers...
 
 ### Simulated Data Sets
 
-In addition to benchmark data sets, `classify` provide a large collection of
+In addition to benchmark data sets, `sortinghat` provide a large collection of
 data-generating models for simulations based on studies in the literature. Thus
 far, we have added multivariate simulation models based on the following family
 of distributions:

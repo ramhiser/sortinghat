@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 
 context("Partitioning a Data Set for Cross-validation")
 

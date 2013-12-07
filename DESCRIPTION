@@ -1,10 +1,10 @@
-Package: classify
-Title: classify
+Package: sortinghat
+Title: sortinghat
 Version: 0.1
 Date: 2013-12-07
 Author: John A. Ramey
 Maintainer: John A. Ramey <johnramey@gmail.com>
-Description: classify is a classification framework to streamline the
+Description: sortinghat is a classification framework to streamline the
     evaluation of classifiers (classification models and algorithms) and seeks
     to determine the best classifiers on a variety of simulated and benchmark
     data sets. Several error-rate estimators are included to evaluate the
@@ -20,10 +20,10 @@ Suggests:
     testthat
 License: MIT + file LICENSE
 LazyData: true
-URL: http://github.com/ramhiser/classify
+URL: http://github.com/ramhiser/sortinghat
 Collate:
     'check-arguments.r'
-    'classify-package.r'
+    'sortinghat-package.r'
     'helper-partition-data.r'
     'helper-which-min.r'
     'simdata-normal.r'

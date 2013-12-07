@@ -2,7 +2,7 @@
 \alias{check_arguments}
 \title{Checks the arguments passed to the error rate estimator functions.}
 \usage{
-  check_arguments(x, y, train, predict)
+  check_arguments(x, y, train, classify)
 }
 \arguments{
   \item{x}{a matrix of n observations and p features}
@@ -12,7 +12,7 @@
   \item{train}{a function that builds the classifier (See
   details)}
 
-  \item{predict}{a function that classified observations
+  \item{classify}{a function that classified observations
   from the constructed classifier from \code{train}. (See
   details.)}
 }

@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 
 context("Bootstrap Error Rate")
 
@@ -14,7 +14,7 @@ test_that("Error rate works correctly on the Iris data set using MASS:::lda", {
 
   set.seed(42)
   error_rate <- errorest_boot(x = iris_x, y = iris_y, train = MASS:::lda,
-                              predict = lda_wrapper)
+                              classify = lda_wrapper)
 
   # This value was computed previously.
   expected_estimate <- 0.0228

@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 
 context("Apparent Error Rate")
 
@@ -13,7 +13,7 @@ test_that("Error rate works correctly on the Iris data set using MASS:::lda", {
   }
 
   error_rate <- errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda,
-                                  predict = lda_wrapper)
+                                  classify = lda_wrapper)
 
   lda_out <- MASS:::lda(x = iris_x, grouping = iris_y)
   lda_classifications <- predict(lda_out, newdata = iris_x)$class

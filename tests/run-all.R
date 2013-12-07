@@ -1,5 +1,5 @@
 library('testthat')
-library('classify')
+library('sortinghat')
 
-test_package('classify')
+test_package('sortinghat')
 

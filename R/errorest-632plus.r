@@ -45,7 +45,7 @@
 #' @param x a matrix of n observations (rows) and p features (columns)
 #' @param y a vector of n class labels
 #' @param train a function that builds the classifier. (See details.)
-#' @param predict a function that classifies observations from the constructed
+#' @param classify a function that classifies observations from the constructed
 #' classifier from \code{train}. (See details.)
 #' @param num_bootstraps the number of bootstrap replications
 #' @param apparent the apparent error rate for the given classifier. If
@@ -60,7 +60,7 @@
 #' iris_x <- data.matrix(iris[, -5])
 #' iris_y <- iris[, 5]
 #'
-#' # Because the \code{predict} function returns multiples objects in a list,
+#' # Because the \code{classify} function returns multiples objects in a list,
 #' # we provide a wrapper function that returns only the class labels.
 #' lda_wrapper <- function(object, newdata) { predict(object, newdata)$class }
 #' set.seed(42)
@@ -70,40 +70,40 @@
 #'
 #' set.seed(42)
 #' apparent <- errorest_apparent(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                               predict = lda_wrapper)
+#'                               classify = lda_wrapper)
 #' set.seed(42)
 #' loo_boot <- errorest_loo_boot(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                               predict = lda_wrapper)
+#'                               classify = lda_wrapper)
 #'
 #' # Each of the following 3 calls should result in the same error rate.
 #' # 1. The apparent error rate is provided, while the LOO-Boot must be computed.
 #' set.seed(42)
 #' errorest_632plus(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                  predict = lda_wrapper, apparent = apparent)
+#'                  classify = lda_wrapper, apparent = apparent)
 #' # 2. The LOO-Boot error rate is provided, while the apparent must be computed.
 #' set.seed(42)
 #' errorest_632plus(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                  predict = lda_wrapper, loo_boot = loo_boot)
+#'                  classify = lda_wrapper, loo_boot = loo_boot)
 #' # 3. Both error rates are provided, so the calculation is quick.
 #' errorest_632plus(x = iris_x, y = iris_y, train = MASS:::lda,
-#'                  predict = lda_wrapper, apparent = apparent,
+#'                  classify = lda_wrapper, apparent = apparent,
 #'                  loo_boot = loo_boot)
 #'
 #' # In each case the output is: 0.02194472
-errorest_632plus <- function(x, y, train, predict, num_bootstraps = 50,
+errorest_632plus <- function(x, y, train, classify, num_bootstraps = 50,
                              apparent = NULL, loo_boot = NULL, ...) {
   x <- as.matrix(x)
   y <- as.factor(y)
-  check_out <- check_arguments(x = x, y = y, train = train, predict = predict)
+  check_out <- check_arguments(x = x, y = y, train = train, classify = classify)
 
   if (is.null(apparent)) {
     apparent <- errorest_apparent(x = x, y = y, train = train,
-                                  predict = predict, ...)
+                                  classify = classify, ...)
   }
   
   if (is.null(loo_boot)) {
     loo_boot <- errorest_loo_boot(x = x, y = y, train = train,
-                                  predict = predict,
+                                  classify = classify,
                                   num_bootstraps = num_bootstraps, ...)
   }
 
@@ -111,11 +111,11 @@ errorest_632plus <- function(x, y, train, predict, num_bootstraps = 50,
   # classifier on the given data set, then compute the proportion of observations
   # in both of 'y' and 'classifications'. Finally, we compute 'gamma_hat'.
   train_out <- train(x, y, ...)
-  classifications <- predict(object = train_out, newdata = x)
+  classify_out <- classify(object = train_out, newdata = x)
 
   n <- length(y)
   p_k <- as.vector(table(y)) / n
-  q_k <- as.vector(table(classifications)) / n
+  q_k <- as.vector(table(classify_out)) / n
   gamma_hat <- drop(p_k %*% (1 - q_k))
 
   # Next, we compute the estimator for the 'relative overfitting rate', R.
