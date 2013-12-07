@@ -1,37 +1,78 @@
 # classify
 
-classify is a framework to streamline the evaluation of supervised
-classification methods and seeks to determine the best classifiers on a variety
-of simulated and benchmark data sets with a collection of benchmark metrics.
+The `classify` package is a framework in R to streamline the evaluation of
+classifiers (classification models and algorithms) and seeks to determine the
+best classifiers on a variety of simulated and benchmark data sets with a
+collection of benchmark metrics.
 
-Typically, classifier superiority is determined by classification error rate (sometimes called
-probability of misclassification or confusion rate). To assess classification
-efficacy, we utilize the following error rate estimators:
+## Installation
 
-* random split / Monte-Carlo cross-validation
-* cross-validation
-* bootstrap
-* .632
-* .632+
-* apparent
+You can install the stable version on [CRAN](http://cran.r-project.org/package=classify):
 
-Many other estimators are planned. Other metrics, such as
-sensitivity/specificity, are also planned.
+```r
+install.packages('classify', dependencies = TRUE)
+```
 
-Many of the estimators that we have implemented are often superior to the more
-widely used methods, such as cross-validation, but have not gained in popularity
-for a variety of reasons. Two major reasons are that they are not as simple or
-straightforward as a simple error-counting approach used in
-cross-validation. Additionally, the more superior methods typically require a
-large amount of computation.
+If you prefer to download the latest version, instead type:
 
-First, we plan to have a simple interface in order to use even the most
-complicated of estimators. Second, we plan to easily interface the error rate
-estimators with the 'caret' package. Third, we will provide support for parallel
-computations via the 'parallel' package. Many of the planned estimators are
-'embarrassingly parallel' and should be easily computed with this package.
+```r
+library(devtools)
+install_github('classify', 'ramey')
+```
 
+# Benchmarking
 
+A primary goal of `classify` is to enable rapid benchmarking across a variety of
+classification scenarios. To achieve this, we provide a large selection of both
+real and simulated data sets collected from the literature and around the
+Internet. With `classify`, researchers can quickly replicate findings within the
+literature as well as rapidly prototype new classifiers.
 
+The list of real and simulated data sets will continue to grow. Contributions
+are greatly appreciated as pull requests.
+
+## Data Sets
+
+Benchmark data sets are useful for evaluating and comparing classifiers...
+
+(Work in Progress: Version 0.2 will include a collection of benchmark data sets)
+
+## Simulated Data Sets
+
+In addition to providing a large collection of benchmark data sets, one of the
+main goals of `classify` is to provide a large collection of data-generating
+models for simulations based on studies in the literature. Thus far, we have
+added multivariate simulation models based on the following family of
+distributions:
+
+- Multivariate Normal
+- Multivariate Student's t
+- Multivariate Contaminated Normal
+- Multivariate Uniform
+
+Moreover, data can be generated based on the well-known configurations from:
+
+- [Friedman (1989)](http://www.jstor.org/discover/10.2307/2289860)
+- [Guo, Hastie, and Tibshirani (2007)](http://biostatistics.oxfordjournals.org/content/8/1/86.long)
+
+The simulated data sets listed above can be generated via the `simdata`
+function.
+
+# Error-Rate Estimation
+
+Classifier superiority is often determined by classification error rate
+(sometimes called probability of misclassification or confusion rate). To assess
+classification efficacy, we utilize the following error-rate estimators:
+
+- Cross-validation Error Rate
+- Bootstrap Error Rate
+- .632 Estimator from [Efron (1983)](http://www.jstor.org/discover/10.2307/2288636)
+- .632+ Estimator from [Efron and Tibshirani (1997)](http://www.jstor.org/discover/10.2307/2965703)
+- Bootstrap Cross-validation from [Fu, Carrol, and Wang (2005)](http://bioinformatics.oxfordjournals.org/content/21/9/1979.abstract)
+- Leave-One-Out Bootstrap Error Rate
+- Apparent Error Rate
+
+Each of these error rates can be accessed via the `errorest` function, which
+acts as a wrapper around the error-rate estimators listed above.
 
 
