@@ -1,18 +1,15 @@
 Package: classify
 Title: classify
 Version: 0.1
-Date: 2013-11-13
+Date: 2013-12-07
 Author: John A. Ramey
 Maintainer: John A. Ramey <johnramey@gmail.com>
-Description: classify is a classification framework
-    intended to streamline the evaluation performance of classifiers in various
-    settings with numerous error rate estimators (e.g. leave-one-out, .632). We
-    provide several benchmark data sets and numerous simulated data sets to
-    evaluate the performance of a classifier. We also provide several well-known
-    error-rate estimators as well as a few estimators that are lesser known. For
-    many classification problems, cross-validation may yield suboptimal
-    classifiers for model selection problems and incorrectly estimate the true
-    error rate when necessary.
+Description: classify is a classification framework to streamline the
+    evaluation of classifiers (classification models and algorithms) and seeks
+    to determine the best classifiers on a variety of simulated and benchmark
+    data sets. Several error-rate estimators are included to evaluate the
+    performance of a classifier. This package is intended to complement the
+    well-known 'caret' package.
 Depends:
     R (>= 3.0.1)
 Imports:
