@@ -17,7 +17,7 @@ If you prefer to download the latest version, instead type:
 
 ```r
 library(devtools)
-install_github('sortinghat', 'ramey')
+install_github('ramhiser/sortinghat')
 ```
 
 ## Benchmarking
